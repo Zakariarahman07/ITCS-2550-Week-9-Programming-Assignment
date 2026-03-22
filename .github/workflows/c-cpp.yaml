@@ -1,0 +1,21 @@
+name: C++ doctest
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build tests
+        run: |
+          g++ -std=c++17 -DRUN_TESTS main.cpp -o tests
+
+      - name: Run tests
+        run: |
+          ./tests
